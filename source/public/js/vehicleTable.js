@@ -159,10 +159,12 @@ class VehicleTable {
         const pos = 1 * orderSwitch;
         const neg = -1 * orderSwitch;
         array.sort((a, b) => {
-            if (typeof a === "string" && typeof b === "string") {
-                a = a.toLowerCase(); b = b.toLowerCase();
+            let aVal = a[key];
+            let bVal = b[key];
+            if (typeof aVal === "string" && typeof bVal === "string") {
+                aVal = aVal.toLowerCase(); bVal = bVal.toLowerCase();
             }
-            return (a[key] > b[key] ? pos : neg);
+            return (aVal > bVal ? pos : neg);
         });
         return array;
     }
