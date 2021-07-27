@@ -1,7 +1,7 @@
 /*
- * VehicleListUpload Component
- * - Renders and manages vehicle file upload UI and logic
- */
+* VehicleListUpload Component
+* - Renders and manages vehicle file upload UI and logic
+*/
 class VehicleListUpload {
     static get ROOT_ELEMENT_SELECTOR() { return "#vehicleListUpload" }
     static get UPLOAD_ELEMENT_ID() { return "upload" }
@@ -23,7 +23,7 @@ class VehicleListUpload {
 
     async init() {
         this.rootElement = this.$(VehicleListUpload.ROOT_ELEMENT_SELECTOR);
-        this.rootElement.append(VehicleListUpload.ELEMENT_HTML)
+        this.rootElement.append(VehicleListUpload.ELEMENT_HTML);
         this.registerListeners();
     }
 

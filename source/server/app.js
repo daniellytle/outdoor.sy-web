@@ -36,12 +36,12 @@ server.listen(port);
 server.on("listening", onListening);
 
 /**
- * Event listener for HTTP server "listening" event.
- */
+* Event listener for HTTP server "listening" event.
+*/
 function onListening() {
-  const addr = server.address();
-  const bind = typeof addr === "string"
+    const addr = server.address();
+    const bind = typeof addr === "string"
     ? "pipe " + addr
     : "port " + addr.port;
-  debug("Listening on " + bind);
+    debug("Listening on " + bind);
 }

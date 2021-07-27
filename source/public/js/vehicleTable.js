@@ -1,7 +1,7 @@
 /*
- * VehicleTable Component
- * - Renders and manages the Vehicle Table UI
- */
+* VehicleTable Component
+* - Renders and manages the Vehicle Table UI
+*/
 class VehicleTable {
     static get ROOT_ELEMENT_SELECTOR() { return "#vehicleTable" }
     static get TABLE_BODY_ELEMENT_ID() { return "vehicleTableTableBody" }
@@ -43,7 +43,7 @@ class VehicleTable {
         for (const header of VehicleTable.TABLE_SCHEMA) {
             tableHeadersHTML += `
             <th>
-                <a ${VehicleTable.SORT_KEY_ATTRIBUTE}="${header.KEY}" ${VehicleTable.SORT_ORDER_ATTRIBUTE}="desc" href="">${header.DISPLAY_NAME}</a>
+            <a ${VehicleTable.SORT_KEY_ATTRIBUTE}="${header.KEY}" ${VehicleTable.SORT_ORDER_ATTRIBUTE}="desc" href="">${header.DISPLAY_NAME}</a>
             </th>
             `
         }
@@ -52,38 +52,37 @@ class VehicleTable {
 
     static get ELEMENT_HTML() {
         return `
-            <h5>Fuzzy search</h5>
-            <input id="${VehicleTable.FILTER_INPUT_ELEMENT_ID}" type="text" prompt="Fuzzy search" />
-            <br>
-            <h3>Vehicles</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        ${VehicleTable.TABLE_HEADER_HTML}
-                    </tr>
-                </thead>
-                <tbody id="${VehicleTable.TABLE_BODY_ELEMENT_ID}">
-                </tbody>
-            </table>
+        <h5>Fuzzy search</h5>
+        <input id="${VehicleTable.FILTER_INPUT_ELEMENT_ID}" type="text" prompt="Fuzzy search" />
+        <br>
+        <h3>Vehicles</h3>
+        <table class="table">
+        <thead>
+        <tr>
+        ${VehicleTable.TABLE_HEADER_HTML}
+        </tr>
+        </thead>
+        <tbody id="${VehicleTable.TABLE_BODY_ELEMENT_ID}">
+        </tbody>
+        </table>
         `;
     }
 
     static get EMPTY_TABLE_ROW() {
         return `
-            <tr><td colspan="6">No vehicles</td></tr>
+        <tr><td colspan="6">No vehicles</td></tr>
         `;
     }
 
     constructor($) {
         this.$ = $;
-        this.vehicles = [];
-        this.filteredVehicles = [];
+        this.filteredVehicles = this.vehicles = [];
         this.init();
     }
 
     async init() {
         this.rootElement = this.$(VehicleTable.ROOT_ELEMENT_SELECTOR);
-        this.rootElement.append(VehicleTable.ELEMENT_HTML)
+        this.rootElement.append(VehicleTable.ELEMENT_HTML);
         this.tableBodyElement = this.$(`#${VehicleTable.TABLE_BODY_ELEMENT_ID}`);
         this.registerListeners();
         this.filteredVehicles = this.vehicles = await VehicleTable.getVehicleData();
@@ -91,8 +90,8 @@ class VehicleTable {
     }
 
     registerListeners() {
-        this.rootElement.find("a").click(this.handleHeaderClick.bind(this))
-        this.rootElement.find(`#${VehicleTable.FILTER_INPUT_ELEMENT_ID}`).on("input", this.handleFilterInputChange.bind(this))
+        this.rootElement.find("a").click(this.handleHeaderClick.bind(this));
+        this.rootElement.find(`#${VehicleTable.FILTER_INPUT_ELEMENT_ID}`).on("input", this.handleFilterInputChange.bind(this));
     }
 
     handleHeaderClick(event) {
@@ -113,7 +112,7 @@ class VehicleTable {
         return vehicles.filter((vehicle) => {
             let vehicleTextblob;
             for (const key in vehicle) {
-                vehicleTextblob += String(vehicle[key])
+                vehicleTextblob += String(vehicle[key]);
             }
             return vehicleTextblob.includes(query);
         })
@@ -123,11 +122,11 @@ class VehicleTable {
         if (options) {
             const { sort } = options;
             if (sort && sort.key && sort.order) {
-                vehicles = VehicleTable.sort(vehicles, options.sort.key, options.sort.order)
-                this.options = options; // Save options state.
+                vehicles = VehicleTable.sort(vehicles, options.sort.key, options.sort.order);
+                this.options = options; // Save options state
             }
         }
-        this.tableBodyElement.empty()
+        this.tableBodyElement.empty();
         if (vehicles.length) {
             const renderedTableBody = VehicleTable.getTableBodyRows(vehicles);
             this.tableBodyElement.append(renderedTableBody);
@@ -142,8 +141,8 @@ class VehicleTable {
             let tableBodyRowHTML = "";
             for (const key in vehicle) {
                 tableBodyRowHTML += `
-                        <td>${vehicle[key]}</td>
-                    `;
+                <td>${vehicle[key]}</td>
+                `;
             }
             tableBodyRowsHTML += `<tr>${tableBodyRowHTML}</tr>`;
         }
@@ -163,7 +162,7 @@ class VehicleTable {
             if (typeof a === "string" && typeof b === "string") {
                 a = a.toLowerCase(); b = b.toLowerCase();
             }
-            return (a[key] > b[key] ? pos : neg)
+            return (a[key] > b[key] ? pos : neg);
         });
         return array;
     }

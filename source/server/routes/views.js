@@ -5,7 +5,7 @@ const Parser = require("../util/Parser");
 const Vehicle = require("../model/Vehicle");
 
 router.get("/", function(req, res, next) {
-  res.render("index", { title: AppConfig.TITLE });
+    res.render("index", { title: AppConfig.TITLE });
 });
 
 module.exports = router;

@@ -20,10 +20,10 @@ api.post("/vehicles", function(req, res) {
     } catch (error) {
         switch (error.message) {
             case Parser.INVALID_INPUT_ERROR_MESSAGE:
-                res.status(400).send(error.message);
-                break;
+            res.status(400).send(error.message);
+            break;
             default:
-                throw error;
+            throw error;
         }
     }
 });
