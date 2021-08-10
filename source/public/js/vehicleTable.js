@@ -114,7 +114,7 @@ class VehicleTable {
             for (const key in vehicle) {
                 vehicleTextblob += String(vehicle[key]);
             }
-            return vehicleTextblob.includes(query);
+            return vehicleTextblob.toLowerCase().includes(query.toLowerCase());
         })
     }
 
